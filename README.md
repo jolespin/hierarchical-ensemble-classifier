@@ -287,15 +287,6 @@ If you use this package in your research, please cite:
 }
 ```
 
-```bibtex
-@article{hierarchical_ensemble_2024,
-  title={Hierarchical Ensemble Classification for Multi-class Biological Data},
-  author={Espinoza, Josh L.},
-  journal={Journal of Machine Learning Research},
-  year={2024}
-}
-```
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
