@@ -271,6 +271,22 @@ We welcome contributions! Please see our [contributing guidelines](CONTRIBUTING.
 
 If you use this package in your research, please cite:
 
+**Original Soothsayer implementation:**
+```bibtex
+@article{espinoza2021predicting,
+  title={Predicting antimicrobial mechanism-of-action from transcriptomes: A generalizable explainable artificial intelligence approach},
+  author={Espinoza, Josh L and Dupont, Chris L and O'Rourke, Aubrie and Beyhan, Seherzada and Morales, Paula and others},
+  journal={PLOS Computational Biology},
+  volume={17},
+  number={3},
+  pages={e1008857},
+  year={2021},
+  publisher={Public Library of Science San Francisco, CA USA},
+  doi={10.1371/journal.pcbi.1008857},
+  url={https://doi.org/10.1371/journal.pcbi.1008857}
+}
+```
+
 ```bibtex
 @article{hierarchical_ensemble_2024,
   title={Hierarchical Ensemble Classification for Multi-class Biological Data},
