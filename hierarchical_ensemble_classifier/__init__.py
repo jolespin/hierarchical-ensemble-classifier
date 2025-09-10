@@ -238,7 +238,7 @@ class HierarchicalEnsembleClassifier(BaseEstimator, ClassifierMixin):
             
     #     return np.array(predictions)
     
-    def predict(self, X):
+    def predict(self, X): # NEEDS OPTIMIZATION
         """
         Predicts the terminal class for each sample in X.
 
