@@ -7,9 +7,12 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+exec(open('hierarchical_ensemble_classifier/__init__.py').read())
+
+
 setup(
     name="hierarchical-ensemble-classifier",
-    version="0.1.0",
+    version=__version__,
     author="Josh L. Espinoza",
     author_email="jespinoz@jcvi.org",
     description="A scikit-learn compatible hierarchical ensemble classifier",
