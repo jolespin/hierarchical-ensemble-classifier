@@ -32,8 +32,9 @@ pip install hierarchical-ensemble-classifier
 import pandas as pd
 from sklearn.datasets import load_iris
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.linear import LogisticRegression
-from hierarchy import (
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
+from hierarchical_ensemble_classifier import (
     HierarchyBuilder, 
     HierarchicalEnsembleClassifier,
 )
@@ -45,15 +46,19 @@ y = pd.Series(iris.target_names[iris.target], name='species').astype(str)
 X.columns = X.columns.str.replace(' (cm)', '').str.replace(' ', '_')
 ```
 
-## Building a Hierarchy
+### Building a Hierarchy
 
 ```python
 # Automatically build a hierarchy from class eigenprofiles
 hb = HierarchyBuilder()
 hb.fit(X, y)
+
+# Inspect the generated hierarchy
+hb.hierarchy_.edges() # .hierarchy_ is a networkx DiGraph and .Y_ is a pd.DataFrame of subclassifier classes
+# OutEdgeView([('y1', 'setosa'), ('y1', 'y2'), ('y2', 'versicolor'), ('y2', 'virginica')])
 ```
 
-## Training Hierarchical Classifiers
+### Training Hierarchical Classifiers
 
 ```python
 # Specify an estimator for each internal node in the hierarchy
@@ -71,26 +76,30 @@ clf = HierarchicalEnsembleClassifier(hierarchy=hb.hierarchy_, estimators=estimat
 clf.fit(X, y)
 ```
 
-## Making Predictions
-
+### Making Predictions
 ```python
 y_hat = clf.predict(X)
-print(pd.Series(y_hat).value_counts())
 ```
 
-## Visualizing the Hierarchy
+### Evaluating Performance
+```python
+performance = cross_val_score(clf, X, y, cv=5)
+print(f"Cross-validated accuracy: {performance.mean():.4f} ± {performance.std():.4f}")
+# Cross-validated accuracy: 0.9200 ± 0.0686
+```
+
+### Visualizing the Hierarchy
 
 ```python
 clf.plot_model()
 ```
 
-## Visualizing Prediction Path
+### Visualizing Prediction Path
 
 ```python
 sample = X.iloc[[0]]
 clf.plot_prediction_paths(sample)
 ```
-
 
 
 ## Citation
@@ -115,7 +124,7 @@ If you use this package in your research, please cite:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
